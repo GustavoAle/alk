@@ -10,6 +10,9 @@ protected:
     virtual void histRerun( wxCommandEvent& event );
     virtual void evalEntry( wxCommandEvent& event );
     virtual void viewAbout( wxCommandEvent& event );
+    virtual void focusEntry( wxFocusEvent& event );
+    virtual void toggleMode( wxCommandEvent& event );
+    virtual void basicButton( wxCommandEvent& event );
 
 public:
     FormCalc(
