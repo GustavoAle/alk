@@ -10,30 +10,39 @@
 FormCalc::FormCalc(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) 
 : FormCalcWX( parent, id, title, pos, size, style )
 {
-    if(txbEntry->IsFocusable() && txbEntry->IsShownOnScreen())
-    {
-        txbEntry->SetFocus();
-    }
+
+    lstHist->AppendColumn(wxT("Expression"),wxLIST_FORMAT_LEFT,400);
+    lstHist->AppendColumn(wxT("Result"),wxLIST_FORMAT_LEFT,200);
+
 }
 
 void FormCalc::histRerun( wxCommandEvent& event ) 
 {
     wxString histValue;
 
-    histValue = lstHist->GetStringSelection();
-
-    std::cout << "hist pressed: " << histValue << '\n';
+    // histValue = lstHist->GetStringSelection();
+    // std::cout << "hist pressed: " << histValue << '\n';
 }
 
 void FormCalc::evalEntry( wxCommandEvent& event )
 { 
     // event.Skip(); 
     wxString entryValue;
+    wxString retString;
+    std::string strExpr;
+
+    double ret;
 
     entryValue = txbEntry->GetValue();
+    strExpr = entryValue.ToStdString();
 
-    lstHist->Append(entryValue);
+    ret = luaVM->mathEval(strExpr);
+    retString = wxString("= ") << ret;
 
+    lstHist->InsertItem(lstHist->GetItemCount(),entryValue);
+    lstHist->SetItem(lstHist->GetItemCount()-1,1,retString);
+
+    labResult->SetLabel(retString);
 
     std::cout << "eval pressed: " << entryValue << '\n';
 

@@ -3,6 +3,7 @@
 
 #include <forms/formcalcwx.h>
 #include <wx/wx.h>
+#include <alk/luavm.h>
 
 class FormCalc : public FormCalcWX
 {
@@ -14,6 +15,9 @@ protected:
     virtual void toggleMode( wxCommandEvent& event );
     virtual void basicButton( wxCommandEvent& event );
 
+    LuaVM *luaVM;
+
+
 public:
     FormCalc(
         wxWindow* parent, 
@@ -24,7 +28,10 @@ public:
         long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL 
     );
 
-
+    void setLuaVM(LuaVM *luaVM)
+    {
+        this->luaVM = luaVM;
+    }
 
     ~FormCalc();
 };
