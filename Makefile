@@ -9,7 +9,7 @@ OBJS=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
 OBJS+=$(patsubst $(FRMDIR)/%.cpp, $(OBJDIR)/%.o, $(FORMS))
 
 CFLAGS=$(shell wx-config --cxxflags) -I./include -I./ -g
-LDFLAGS=$(shell wx-config --libs)
+LDFLAGS=$(shell wx-config --libs) -llua
 
 CC=g++
 

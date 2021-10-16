@@ -16,7 +16,7 @@ FormCalcWX::FormCalcWX( wxWindow* parent, wxWindowID id, const wxString& title, 
 	wxBoxSizer* vSizer;
 	vSizer = new wxBoxSizer( wxVERTICAL );
 
-	lstHist = new wxListBox( this, wxID_ANY, wxDefaultPosition, wxSize( 200,-1 ), 0, NULL, 0 );
+	lstHist = new wxListCtrl( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_SINGLE_SEL );
 	lstHist->SetFont( wxFont( 12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxEmptyString ) );
 
 	vSizer->Add( lstHist, 1, wxALL|wxEXPAND, 0 );
@@ -181,7 +181,6 @@ FormCalcWX::FormCalcWX( wxWindow* parent, wxWindowID id, const wxString& title, 
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	lstHist->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FormCalcWX::histRerun ), NULL, this );
 	txbEntry->Connect( wxEVT_KILL_FOCUS, wxFocusEventHandler( FormCalcWX::focusEntry ), NULL, this );
 	txbEntry->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FormCalcWX::evalEntry ), NULL, this );
 	m_button43->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FormCalcWX::basicButton ), NULL, this );
@@ -216,7 +215,6 @@ FormCalcWX::FormCalcWX( wxWindow* parent, wxWindowID id, const wxString& title, 
 FormCalcWX::~FormCalcWX()
 {
 	// Disconnect Events
-	lstHist->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FormCalcWX::histRerun ), NULL, this );
 	txbEntry->Disconnect( wxEVT_KILL_FOCUS, wxFocusEventHandler( FormCalcWX::focusEntry ), NULL, this );
 	txbEntry->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FormCalcWX::evalEntry ), NULL, this );
 	m_button43->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FormCalcWX::basicButton ), NULL, this );
