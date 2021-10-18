@@ -16,8 +16,8 @@
 #include <wx/settings.h>
 #include <wx/string.h>
 #include <wx/stattext.h>
-#include <wx/textctrl.h>
 #include <wx/sizer.h>
+#include <wx/textctrl.h>
 #include <wx/panel.h>
 #include <wx/button.h>
 #include <wx/bitmap.h>
@@ -100,6 +100,7 @@ class FormCalcWX : public wxFrame
 		wxMenu* menHelp;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void resizeWidgets( wxSizeEvent& event ) { event.Skip(); }
 		virtual void focusEntry( wxFocusEvent& event ) { event.Skip(); }
 		virtual void evalEntry( wxCommandEvent& event ) { event.Skip(); }
 		virtual void basicButton( wxCommandEvent& event ) { event.Skip(); }
@@ -109,7 +110,7 @@ class FormCalcWX : public wxFrame
 
 	public:
 
-		FormCalcWX( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Alk"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 300,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		FormCalcWX( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Alk"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 600,652 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~FormCalcWX();
 

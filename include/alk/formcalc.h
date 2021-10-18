@@ -14,7 +14,8 @@ protected:
     virtual void focusEntry( wxFocusEvent& event );
     virtual void toggleMode( wxCommandEvent& event );
     virtual void basicButton( wxCommandEvent& event );
-
+    virtual void resizeWidgets( wxSizeEvent& event );
+		
     LuaVM *luaVM;
 
 

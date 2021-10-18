@@ -2,6 +2,8 @@
 
 #include <alk/formcalc.h>
 #include <alk/formabout.h>
+#include <alk/luavm.h>
+#include <alk/luaexception.h>
 
 #include <wx/wx.h>
 
@@ -30,19 +32,31 @@ void FormCalc::evalEntry( wxCommandEvent& event )
     wxString entryValue;
     wxString retString;
     std::string strExpr;
+    int itemPos;
 
     double ret;
 
     entryValue = txbEntry->GetValue();
     strExpr = entryValue.ToStdString();
 
-    ret = luaVM->mathEval(strExpr);
+    try
+    {
+        ret = luaVM->mathEval(strExpr);
+    }
+    catch(LuaException &e)
+    {
+        std::cout << e.what() << '\n';
+    }
+
     retString = wxString("= ") << ret;
 
-    lstHist->InsertItem(lstHist->GetItemCount(),entryValue);
-    lstHist->SetItem(lstHist->GetItemCount()-1,1,retString);
+    itemPos = lstHist->GetItemCount();
+    lstHist->InsertItem(itemPos,entryValue);
+    lstHist->SetItem(itemPos,1,retString);
+    lstHist->EnsureVisible(itemPos);
 
     labResult->SetLabel(retString);
+    labResult->Layout();
 
     std::cout << "eval pressed: " << entryValue << '\n';
 
@@ -64,7 +78,6 @@ void FormCalc::focusEntry( wxFocusEvent& event )
         txbEntry->SetFocus();
         txbEntry->SetInsertionPoint(pos);
     }
-    // std::cout << "Last valid: " << txbEntry->GetInsertionPoint() << '\n';
 }
 
 void FormCalc::toggleMode( wxCommandEvent& event )
@@ -96,10 +109,18 @@ void FormCalc::toggleMode( wxCommandEvent& event )
     }
 
     this->Layout();
-    // this->Refresh();
 
 }
 
+
+void FormCalc::resizeWidgets( wxSizeEvent& event )
+{
+    
+    lstHist->SetColumnWidth(0,this->m_width*0.65);
+    lstHist->SetColumnWidth(1,this->m_width*0.35);
+    this->Layout();
+
+}
 
 void FormCalc::basicButton( wxCommandEvent& event )
 { 
@@ -185,11 +206,6 @@ void FormCalc::basicButton( wxCommandEvent& event )
 
     std::cout << "ok" << '\n';
 
-    // if(txbEntry->IsFocusable() && txbEntry->IsShownOnScreen())
-    // {
-    //     txbEntry->SetFocus();
-    //     txbEntry->SetInsertionPoint(pos+1);
-    // }
 }
 
 

@@ -12,6 +12,14 @@ LuaVM::LuaVM()
 double LuaVM::mathEval(std::string& expr)
 {
     int ret;
+    size_t eqPos;
+
+    eqPos = expr.find('=');
+    if(eqPos == std::string::npos)
+    {
+        expr = "ans="+expr;
+    }
+
     ret = luaL_dostring(luaVMState,expr.c_str());
 
     if(ret == LUA_OK)
