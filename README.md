@@ -5,6 +5,9 @@
 
 ---
 
+<div align="center">
+<img src="assets/for-loop.gif">
+</div>
 
 ## Build
 ### Windows or Mac
