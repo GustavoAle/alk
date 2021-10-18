@@ -46,6 +46,7 @@ void FormCalc::evalEntry( wxCommandEvent& event )
     catch(LuaException &e)
     {
         std::cout << e.what() << '\n';
+        ret = nan("");
     }
 
     retString = wxString("= ") << ret;
@@ -56,7 +57,7 @@ void FormCalc::evalEntry( wxCommandEvent& event )
     lstHist->EnsureVisible(itemPos);
 
     labResult->SetLabel(retString);
-    labResult->Layout();
+    this->Layout();
 
     std::cout << "eval pressed: " << entryValue << '\n';
 
@@ -64,7 +65,9 @@ void FormCalc::evalEntry( wxCommandEvent& event )
 
 void FormCalc::viewAbout( wxCommandEvent& event )
 {
-    FormAbout *formAbout = new FormAbout(NULL);
+    if(!formAbout)
+        formAbout = new FormAbout(NULL);
+    
     formAbout->Show(true);
 }
 

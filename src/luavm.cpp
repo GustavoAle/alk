@@ -2,6 +2,7 @@
 #include <alk/luaexception.h>
 
 #include <string>
+#include <regex>
 
 LuaVM::LuaVM()
 {
@@ -12,10 +13,14 @@ LuaVM::LuaVM()
 double LuaVM::mathEval(std::string& expr)
 {
     int ret;
-    size_t eqPos;
 
-    eqPos = expr.find('=');
-    if(eqPos == std::string::npos)
+    bool hasAssign;
+    bool isStatement;
+
+    hasAssign = expr.find('=') != std::string::npos;
+    isStatement = std::regex_match (expr,std::regex("(.*)(function|for|while|end)(.*)") );
+
+    if(!hasAssign && !isStatement)
     {
         expr = "ans="+expr;
     }

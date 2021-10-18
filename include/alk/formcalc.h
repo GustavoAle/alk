@@ -1,8 +1,11 @@
 #ifndef ALK_FORMCALC_H
 #define ALK_FORMCALC_H
 
-#include <forms/formcalcwx.h>
 #include <wx/wx.h>
+
+#include <forms/formcalcwx.h>
+
+#include <alk/formabout.h>
 #include <alk/luavm.h>
 
 class FormCalc : public FormCalcWX
@@ -18,6 +21,7 @@ protected:
 		
     LuaVM *luaVM;
 
+    FormAbout *formAbout = NULL;
 
 public:
     FormCalc(

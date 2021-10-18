@@ -1,4 +1,4 @@
-#ifndef ALK_FORMABOUR_H
+#ifndef ALK_FORMABOUT_H
 #define ALK_FORMABOUT_H
 
 #include <forms/formaboutwx.h>
