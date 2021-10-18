@@ -28,11 +28,10 @@ cd alk
 make
 ```
 
-#### Ubuntu
-
+<!-- #### Ubuntu
 Prerequisites:
 ```
-apt install libwxgtk3.0-dev lua-devel
+apt install build-essential libwxgtk3.0-gtk3-dev lua-devel
 ```
 
 Building:
@@ -40,4 +39,4 @@ Building:
 git clone https://github.com/GustavoAle/alk
 cd alk
 make
-```
+``` -->
