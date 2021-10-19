@@ -50,7 +50,7 @@
 #define BASIC_SQRT_ 1017
 #define BASIC_0_ 1018
 #define BASIC_DOT_ 1019
-#define BASIC_PERC_ 1020
+#define BASIC_ANS_ 1020
 #define BASIC_ADD_ 1021
 #define BASIC_EQ_ 1022
 #define TGB_KEYBOARD 1023
@@ -100,6 +100,7 @@ class FormCalcWX : public wxFrame
 		wxMenu* menHelp;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void focusEntry( wxShowEvent& event ) { event.Skip(); }
 		virtual void resizeWidgets( wxSizeEvent& event ) { event.Skip(); }
 		virtual void focusEntry( wxFocusEvent& event ) { event.Skip(); }
 		virtual void evalEntry( wxCommandEvent& event ) { event.Skip(); }

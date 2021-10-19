@@ -31,6 +31,7 @@
 class FormCalc : public FormCalcWX
 {
 protected:
+    virtual void focusEntry( wxShowEvent& event );
     virtual void histRerun( wxCommandEvent& event );
     virtual void evalEntry( wxCommandEvent& event );
     virtual void viewAbout( wxCommandEvent& event );

@@ -124,7 +124,7 @@ FormCalcWX::FormCalcWX( wxWindow* parent, wxWindowID id, const wxString& title, 
 	m_button62 = new wxButton( panBasic, BASIC_DOT_, wxT("."), wxDefaultPosition, wxDefaultSize, 0 );
 	gbSizer0->Add( m_button62, wxGBPosition( 3, 1 ), wxGBSpan( 1, 1 ), wxALL, 5 );
 
-	m_button63 = new wxButton( panBasic, BASIC_PERC_, wxT("%"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button63 = new wxButton( panBasic, BASIC_ANS_, wxT("ANS"), wxDefaultPosition, wxDefaultSize, 0 );
 	gbSizer0->Add( m_button63, wxGBPosition( 3, 2 ), wxGBSpan( 1, 1 ), wxALL, 5 );
 
 	m_button64 = new wxButton( panBasic, BASIC_ADD_, wxT("+"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -188,6 +188,7 @@ FormCalcWX::FormCalcWX( wxWindow* parent, wxWindowID id, const wxString& title, 
 	this->Centre( wxBOTH );
 
 	// Connect Events
+	this->Connect( wxEVT_SHOW, wxShowEventHandler( FormCalcWX::focusEntry ) );
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( FormCalcWX::resizeWidgets ) );
 	txbEntry->Connect( wxEVT_KILL_FOCUS, wxFocusEventHandler( FormCalcWX::focusEntry ), NULL, this );
 	txbEntry->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FormCalcWX::evalEntry ), NULL, this );
@@ -223,6 +224,7 @@ FormCalcWX::FormCalcWX( wxWindow* parent, wxWindowID id, const wxString& title, 
 FormCalcWX::~FormCalcWX()
 {
 	// Disconnect Events
+	this->Disconnect( wxEVT_SHOW, wxShowEventHandler( FormCalcWX::focusEntry ) );
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( FormCalcWX::resizeWidgets ) );
 	txbEntry->Disconnect( wxEVT_KILL_FOCUS, wxFocusEventHandler( FormCalcWX::focusEntry ), NULL, this );
 	txbEntry->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( FormCalcWX::evalEntry ), NULL, this );

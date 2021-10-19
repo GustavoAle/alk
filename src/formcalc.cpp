@@ -103,6 +103,18 @@ void FormCalc::focusEntry( wxFocusEvent& event )
     }
 }
 
+void FormCalc::focusEntry( wxShowEvent& event )
+{   
+    int pos;
+
+    pos = txbEntry->GetInsertionPoint();
+    if(txbEntry->IsFocusable() && txbEntry->IsShownOnScreen())
+    {
+        txbEntry->SetFocus();
+        txbEntry->SetInsertionPoint(pos);
+    }
+}	
+
 void FormCalc::toggleMode( wxCommandEvent& event )
 {
     int btnID;
@@ -150,83 +162,35 @@ void FormCalc::basicButton( wxCommandEvent& event )
     int btnID;
     int pos = txbEntry->GetInsertionPoint();
 
-    std::cout << "POS: " << txbEntry->GetInsertionPoint() << '\n';
-
     btnID = event.GetId();
     switch(btnID)
     {
-    case BASIC_7_:
-        std::cout << "button pressed: " << 7 << '\n';
-        txbEntry->WriteText(wxT("7"));
-        break;
-    case BASIC_8_:
-        std::cout << "button pressed: " << 8 << '\n';
-        break;
-    case BASIC_9_:
-        std::cout << "button pressed: " << 9 << '\n';
-        break;
-    case BASIC_DIV_:
-        std::cout << "button pressed: " << '/' << '\n';
-        break;
-    case BASIC_CE_:
-        std::cout << "button pressed: " << "CE" << '\n';
-        break;
-    case BASIC_C_:
-        std::cout << "button pressed: " << "C" << '\n';
-        break;
-    case BASIC_4_:
-        std::cout << "button pressed: " << 4 << '\n';
-        break;
-    case BASIC_5_:
-        std::cout << "button pressed: " << 5 << '\n';
-        break;
-    case BASIC_6_:
-        std::cout << "button pressed: " << 6 << '\n';
-        break;
-    case BASIC_MUL_:
-        std::cout << "button pressed: " << "*" << '\n';
-        break;
-    case BASIC_LPAR_:
-        std::cout << "button pressed: " << "(" << '\n';
-        break;
-    case BASIC_RPAR_:
-        std::cout << "button pressed: " << ")" << '\n';
-        break;
-    case BASIC_1_:
-        std::cout << "button pressed: " << 1 << '\n';
-        break;
-    case BASIC_2_:
-        std::cout << "button pressed: " << 2 << '\n';
-        break;
-    case BASIC_3_:
-        std::cout << "button pressed: " << 3 << '\n';
-        break;
-    case BASIC_SUB_:
-        std::cout << "button pressed: " << "-" << '\n';
-        break;
-    case BASIC_SQ_:
-        std::cout << "button pressed: " << "^2" << '\n';
-        break;
-    case BASIC_SQRT_:
-        std::cout << "button pressed: " << "sqrt" << '\n';
-        break;
-    case BASIC_0_:
-        std::cout << "button pressed: " << 0 << '\n';
-        break;
-    case BASIC_DOT_:
-        std::cout << "button pressed: " << "." << '\n';
-        break;
-    case BASIC_PERC_:
-        std::cout << "button pressed: " << "%" << '\n';
-        break;
-    case BASIC_ADD_:
-        std::cout << "button pressed: " << "+" << '\n';
-        break;
-    case BASIC_EQ_:
-        std::cout << "button pressed: " << "=" << '\n';
-        break;
+    case BASIC_0_:      txbEntry->WriteText("0"); break;
+    case BASIC_1_:      txbEntry->WriteText("1"); break;
+    case BASIC_2_:      txbEntry->WriteText("2"); break;
+    case BASIC_3_:      txbEntry->WriteText("3"); break;
+    case BASIC_4_:      txbEntry->WriteText("4"); break;
+    case BASIC_5_:      txbEntry->WriteText("5"); break;
+    case BASIC_6_:      txbEntry->WriteText("6"); break;
+    case BASIC_7_:      txbEntry->WriteText("7"); break;
+    case BASIC_8_:      txbEntry->WriteText("8"); break;
+    case BASIC_9_:      txbEntry->WriteText("9"); break;
+    case BASIC_ADD_:    txbEntry->WriteText("+"); break;    
+    case BASIC_SUB_:    txbEntry->WriteText("-"); break;    
+    case BASIC_MUL_:    txbEntry->WriteText("*"); break;    
+    case BASIC_DIV_:    txbEntry->WriteText("/"); break;    
+    case BASIC_LPAR_:   txbEntry->WriteText("("); break;    
+    case BASIC_RPAR_:   txbEntry->WriteText(")"); break;    
+    case BASIC_SQ_:     txbEntry->WriteText("^2"); break;
+    case BASIC_SQRT_:   txbEntry->WriteText("sqrt("); break;    
+    case BASIC_DOT_:    txbEntry->WriteText("."); break;    
+    case BASIC_ANS_:    txbEntry->WriteText("ans"); break;    
+    case BASIC_C_:      txbEntry->SetValue(""); break;
+    case BASIC_CE_:     txbEntry->SetValue(""); break;
+    case BASIC_EQ_:     
+    default: evalEntry(event); break;
     }
-
+ 
     std::cout << "ok" << '\n';
 
 }
