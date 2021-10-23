@@ -30,16 +30,25 @@ git clone https://github.com/GustavoAle/alk
 cd alk
 make
 ```
+Run:
+```
+./alk.elf
+```
 
-<!-- #### Ubuntu
+#### Ubuntu
 Prerequisites:
 ```
-apt install build-essential libwxgtk3.0-gtk3-dev lua-devel
+apt install build-essential libwxgtk3.0-gtk3-dev liblua5.1-dev
 ```
 
 Building:
 ```
 git clone https://github.com/GustavoAle/alk
 cd alk
+export ALKTARGET=lua51
 make
-``` -->
+```
+Run:
+```
+./alk.elf
+```
