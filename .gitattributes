@@ -1,1 +1,1 @@
-*.c linguist-language=C++
+forms/*.c linguist-language=C++
