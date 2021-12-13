@@ -9,6 +9,14 @@
 <img src="assets/for-loop.gif">
 </div>
 
+## Summary <!-- omit in toc -->
+
+- [Build](#build)
+  - [Windows or Mac](#windows-or-mac)
+  - [Linux](#linux)
+    - [Fedora](#fedora)
+    - [Ubuntu](#ubuntu)
+
 ## Build
 ### Windows or Mac
 I didn't tested the building on Windows or Mac myself, but it is possible since wxWidgets and Lua C API are both multiplatform
@@ -52,3 +60,18 @@ Run:
 ```
 ./alk.elf
 ```
+
+<!--
+
+<div align="center">
+<img src="assets/logo128.png">
+
+1.0
+
+Special thanks to Al-Khwarizmi, the ancient Greeks and all those who founded 
+the pillars of mathematics.
+
+</div>
+
+-->
+
